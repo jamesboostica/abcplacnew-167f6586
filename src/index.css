@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   ABC Place Design System
+   Brand palette (the only colors permitted):
+     #1800AD  Brand blue
+     #0D0D0D  Ink
+     #F7F5F0  Ivory
+     #EDE9E1  Warm cream
+     #B8A87A  Muted gold
+     #4A4A52  Slate
+     #FFFFFF  Pure white
+   shadcn/ui consumes the HSL variables below. They are mapped
+   into the ABC palette so existing Radix components stay on-brand.
+   ========================================================= */
+
+@layer base {
+  :root {
+    /* Header reserved height (mobile default) */
+    --abc-header-offset: 56px;
+
+    /* Surfaces */
+    --background: 0 0% 100%;            /* #FFFFFF */
+    --foreground: 0 0% 5%;              /* #0D0D0D */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Brand accent */
+    --primary: 252 100% 34%;            /* #1800AD */
+    --primary-foreground: 0 0% 100%;
+
+    /* Quiet luxury supports */
+    --secondary: 40 27% 91%;            /* #EDE9E1 warm cream */
+    --secondary-foreground: 0 0% 5%;
+
+    --accent: 41 28% 60%;               /* #B8A87A muted gold */
+    --accent-foreground: 0 0% 5%;
+
+    --muted: 41 26% 95%;                /* #F7F5F0 ivory */
+    --muted-foreground: 240 5% 30%;     /* #4A4A52 slate */
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 27% 91%;               /* #EDE9E1 */
+    --input: 40 27% 91%;
+    --ring: 252 100% 34%;               /* #1800AD */
+
+    --radius: 4px;
+
+    /* Sidebar (kept for shadcn compatibility) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 5%;
+    --sidebar-primary: 252 100% 34%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 41 26% 95%;
+    --sidebar-accent-foreground: 0 0% 5%;
+    --sidebar-border: 40 27% 91%;
+    --sidebar-ring: 252 100% 34%;
+  }
+
+  @media (min-width: 768px) {
+    :root { --abc-header-offset: 116px; } /* tier2 80 + tier3 hidden, tier1 36 */
+  }
+  @media (min-width: 1024px) {
+    :root { --abc-header-offset: 164px; } /* tier1 36 + tier2 80 + tier3 48 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: #FFFFFF;
+    color: #0D0D0D;
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  ::selection {
+    background: #1800AD;
+    color: #F7F5F0;
+  }
+  :focus-visible {
+    outline: 2px solid #1800AD;
+    outline-offset: 2px;
+  }
+}
+
+/* =========================================================
+   ABC Place utility classes
+   ========================================================= */
+@layer components {
+  /* Animated underline used by nav links and "Discover" CTAs */
+  .abc-nav-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+  .abc-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #1800AD;
+    transition: width 0.2s ease;
+  }
+  .abc-nav-link:hover::after,
+  .abc-nav-link:focus-visible::after,
+  .abc-nav-link.is-active::after {
+    width: 100%;
+  }
+
+  /* Light variant on dark surfaces (hero, footer band) */
+  .abc-cta-light::after {
+    background: #FFFFFF;
+  }
+
+  /* IntersectionObserver scroll reveal */
+  .abc-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .abc-reveal[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Fluid type scales — clamp() per the brief */
+  .abc-section-title {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: 0.04em;
+  }
+  .abc-hero-title {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 1023px) {
+    .abc-plan-your-visit-cta,
+    .abc-mobile-plan-your-visit-bar {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  }
+}
+
+/* =========================================================
+   ABC marquee + hamburger
+   ========================================================= */
+@keyframes abcMarqueeStrip {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.abc-ticker-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+@keyframes abcPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(26, 122, 60, 0.6); }
+  70%  { box-shadow: 0 0 0 6px rgba(26, 122, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(26, 122, 60, 0); }
+}
+.abc-pulse-dot {
+  animation: abcPulse 2s infinite;
+}
+
+/* =========================================================
+   Editorial drop cap (Journal articles)
+   ========================================================= */
+.abc-dropcap::first-letter {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  float: left;
+  font-size: 4.5em;
+  line-height: 0.9;
+  padding: 6px 12px 0 0;
+  color: #1800AD;
+}
+
+/* =========================================================
+   Accessibility — focus + skip link + reduced motion
+   ========================================================= */
+.abc-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 18px;
+  background: #0D0D0D;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+.abc-skip-link:focus {
+  top: 12px;
+  outline: 2px solid #1800AD;
+  outline-offset: 2px;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #1800AD;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Category tile interactions */
+.abc-tile:hover {
+  background-color: #F7F5F0;
+  border-bottom-color: #1800AD !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -10px rgba(13,13,13,0.18);
+}
+.abc-tile:hover .abc-tile-icon {
+  background-color: #1800AD;
+}
+.abc-tile:hover .abc-tile-icon svg {
+  color: #FFFFFF;
+  stroke: #FFFFFF;
+}
+@media (prefers-reduced-motion: reduce) {
+  .abc-tile, .abc-tile * { transition: none !important; transform: none !important; }
+}

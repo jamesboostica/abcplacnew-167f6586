@@ -1,0 +1,12 @@
+{
+  "name": "ABC Place Westlands",
+  "short_name": "ABC Place",
+  "description": "Nairobi's most considered address — dining, retail and lifestyle on Waiyaki Way, Westlands.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1800AD",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "32x32", "type": "image/x-icon" }
+  ]
+}
