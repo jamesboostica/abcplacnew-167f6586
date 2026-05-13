@@ -13,6 +13,8 @@ import Wellness from "./pages/Wellness";
 import Services from "./pages/Services";
 import Journal from "./pages/Journal";
 import Visit from "./pages/Visit";
+import Events from "./pages/Events";
+import Contact from "./pages/Contact";
 import StoreDetail from "./pages/StoreDetail";
 import {
   PageFade,
@@ -45,6 +47,8 @@ const App = () => (
           <Route path="/journal" element={<Journal />} />
           <Route path="/journal/:slug" element={<AbcJournalArticle />} />
           <Route path="/visit" element={<Visit />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/directory" element={<Directory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

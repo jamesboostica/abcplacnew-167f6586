@@ -65,9 +65,14 @@ const useSeo = () => {
         addressCountry: "KE",
       },
        openingHours: "Mo-Su 08:00-17:00",
-      url: typeof window !== "undefined" ? window.location.href : "",
+      url: "https://abc-place.com/",
     });
     document.head.appendChild(ld);
+
+    let c = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+    c.href = 'https://abc-place.com/';
+
     return () => {
       document.title = prevTitle;
       document.head.removeChild(ld);
@@ -716,6 +721,23 @@ const AbcPlace = () => {
       <main id="main">
         <Hero />
         <NowOpenTicker />
+        <div
+          className="flex items-center justify-center text-center px-6 py-3"
+          style={{ background: "#1800AD" }}
+        >
+          <p
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: 500,
+              fontSize: 12,
+              letterSpacing: "0.18em",
+              color: "#FFFFFF",
+              textTransform: "uppercase",
+            }}
+          >
+            ★ 4.5 / 5 · 3,900+ Google Reviews · Nairobi's most considered address
+          </p>
+        </div>
         <CategoryTiles />
         <SpotlightCards />
         <TenantCarousel

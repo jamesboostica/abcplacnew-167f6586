@@ -50,7 +50,12 @@ const Directory = () => {
   const loading = useFakeLoad();
 
   useEffect(() => {
-    document.title = "Store Directory | ABC Place Westlands";
+    document.title = "Tenants & Directory | ABC Place Westlands";
+    const m = document.querySelector('meta[name="description"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'description' }));
+    m.setAttribute('content', 'Explore the full directory of dining, retail, services and office tenants at ABC Place, Westlands, Nairobi.');
+    let c = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+    c.href = 'https://abc-place.com/directory';
   }, []);
 
   const filtered = useMemo(
@@ -75,10 +80,23 @@ const Directory = () => {
   return (
     <PageShell>
       <PageHero
-        eyebrow="Every address, in one place"
-        title="Store Directory"
+        eyebrow="Find your way around"
+        title="Tenants & Directory"
         image={heroImg}
       />
+      <p
+        className="max-w-[1400px] mx-auto px-6 lg:px-12 mt-8 text-center"
+        style={{
+          fontFamily: "Montserrat",
+          fontStyle: "italic",
+          fontWeight: 300,
+          fontSize: 13,
+          color: "#4A4A52",
+        }}
+      >
+        Directory last updated May 2025. For the most current tenant information,
+        call us on <a href="tel:+254715456222" className="text-[#1800AD] font-medium not-italic">0715 456222</a>.
+      </p>
       <main className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-12 py-10 sm:py-12 lg:py-16">
         {/* Intro + at-a-glance metrics */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-end mb-10">
