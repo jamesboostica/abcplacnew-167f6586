@@ -1,17 +1,20 @@
 import { ReactNode } from "react";
 import AbcHeader from "@/components/abc/AbcHeader";
+import AbcFooter from "@/components/abc/AbcFooter";
 
 /**
  * Shared page wrapper that:
  * - mounts the fixed three-tier header
  * - reserves vertical space below it (~164px desktop, ~56px mobile)
+ * - includes the site footer at the bottom
  */
 export const PageShell = ({ children }: { children: ReactNode }) => (
-  <div className="min-h-screen bg-abc-white text-abc-ink">
+  <div className="min-h-screen bg-abc-white text-abc-ink flex flex-col">
     <AbcHeader />
-    <div style={{ paddingTop: "var(--abc-header-offset, 56px)" }}>
+    <div style={{ paddingTop: "var(--abc-header-offset, 56px)" }} className="flex-1">
       {children}
     </div>
+    <AbcFooter />
   </div>
 );
 
