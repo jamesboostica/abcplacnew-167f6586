@@ -50,7 +50,12 @@ const Directory = () => {
   const loading = useFakeLoad();
 
   useEffect(() => {
-    document.title = "Store Directory | ABC Place Westlands";
+    document.title = "Tenants & Directory | ABC Place Westlands";
+    const m = document.querySelector('meta[name="description"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'description' }));
+    m.setAttribute('content', 'Explore the full directory of dining, retail, services and office tenants at ABC Place, Westlands, Nairobi.');
+    let c = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+    c.href = 'https://abc-place.com/directory';
   }, []);
 
   const filtered = useMemo(

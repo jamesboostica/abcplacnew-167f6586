@@ -65,9 +65,14 @@ const useSeo = () => {
         addressCountry: "KE",
       },
        openingHours: "Mo-Su 08:00-17:00",
-      url: typeof window !== "undefined" ? window.location.href : "",
+      url: "https://abc-place.com/",
     });
     document.head.appendChild(ld);
+
+    let c = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+    c.href = 'https://abc-place.com/';
+
     return () => {
       document.title = prevTitle;
       document.head.removeChild(ld);
