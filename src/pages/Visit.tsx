@@ -1,13 +1,40 @@
 import { PageShell, PageHero } from "@/components/abc/PageShell";
-import { Car, Zap, ShieldCheck, Building2 } from "lucide-react";
+import { Car, Zap, ShieldCheck, Building2, Bus, Bike, MapPinned, AlertCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { usePageMeta } from "@/lib/usePageMeta";
 import heroImg from "@/assets/java-house-exterior.webp";
 
 const PARKING = [
   { Icon: Building2, label: "3 Floors", description: "Lower ground · L1 · L2" },
-  { Icon: Car, label: "650 Bays", description: "Complimentary for visitors" },
+  { Icon: Car, label: "650 Bays", description: "Hourly rates apply" },
   { Icon: Zap, label: "EV Charging", description: "8 fast chargers · L1" },
   { Icon: ShieldCheck, label: "24/7 Security", description: "Managed access · CCTV" },
 ];
+
+const labelStyle = {
+  fontFamily: "Montserrat",
+  fontWeight: 600,
+  letterSpacing: "0.18em",
+  textTransform: "uppercase" as const,
+  fontSize: 11,
+  color: "#1800AD",
+};
+
+const headingStyle = {
+  fontFamily: "Montserrat",
+  fontWeight: 700,
+  fontSize: "clamp(24px, 3vw, 32px)",
+  color: "#0D0D0D",
+  letterSpacing: "0.02em",
+  lineHeight: 1.15,
+};
+
+const bodyStyle = {
+  fontFamily: "Montserrat",
+  fontSize: 15,
+  color: "#4A4A52",
+  lineHeight: 1.75,
+};
 
 const Visit = () => (
   <PageShell>
