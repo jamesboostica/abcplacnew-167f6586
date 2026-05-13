@@ -721,6 +721,23 @@ const AbcPlace = () => {
       <main id="main">
         <Hero />
         <NowOpenTicker />
+        <div
+          className="flex items-center justify-center text-center px-6 py-3"
+          style={{ background: "#1800AD" }}
+        >
+          <p
+            style={{
+              fontFamily: "Montserrat",
+              fontWeight: 500,
+              fontSize: 12,
+              letterSpacing: "0.18em",
+              color: "#FFFFFF",
+              textTransform: "uppercase",
+            }}
+          >
+            ★ 4.5 / 5 · 3,900+ Google Reviews · Nairobi's most considered address
+          </p>
+        </div>
         <CategoryTiles />
         <SpotlightCards />
         <TenantCarousel
