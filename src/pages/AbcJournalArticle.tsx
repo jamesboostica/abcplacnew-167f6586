@@ -103,18 +103,28 @@ const AbcJournalArticle = () => {
     "#ABCPlace",
   ];
 
-  const share = (target: "twitter" | "whatsapp" | "copy") => {
+  const share = (target: "twitter" | "linkedin" | "facebook" | "copy") => {
     if (target === "twitter") {
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(url)}`,
         "_blank",
       );
-    } else if (target === "whatsapp") {
+    } else if (target === "linkedin") {
       window.open(
-        `https://wa.me/?text=${encodeURIComponent(`${article.title} — ${url}`)}`,
+        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+        "_blank",
+      );
+    } else if (target === "facebook") {
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
         "_blank",
       );
     } else {
+      navigator.clipboard?.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    }
+  };
       navigator.clipboard?.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
