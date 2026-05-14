@@ -291,11 +291,14 @@ const AbcJournalArticle = () => {
             Share This Article
           </p>
           <div className="flex flex-wrap items-center gap-3">
+            <ShareBtn label="LinkedIn" onClick={() => share("linkedin")}>
+              <Linkedin size={16} />
+            </ShareBtn>
             <ShareBtn label="Twitter / X" onClick={() => share("twitter")}>
               <Twitter size={16} />
             </ShareBtn>
-            <ShareBtn label="WhatsApp" onClick={() => share("whatsapp")}>
-              <MessageCircle size={16} />
+            <ShareBtn label="Facebook" onClick={() => share("facebook")}>
+              <Facebook size={16} />
             </ShareBtn>
             <ShareBtn label={copied ? "Copied!" : "Copy Link"} onClick={() => share("copy")}>
               <Link2 size={16} />
