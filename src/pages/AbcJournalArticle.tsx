@@ -125,11 +125,6 @@ const AbcJournalArticle = () => {
       setTimeout(() => setCopied(false), 1800);
     }
   };
-      navigator.clipboard?.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-abc-white text-abc-ink">
