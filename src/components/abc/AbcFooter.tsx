@@ -71,7 +71,7 @@ const AbcFooter = () => (
               0715 456222
             </a>
             <br />
-            info@abcplace.co.ke
+            <a href="mailto:info@abc-place.com" className="hover:text-abc-ivory transition-colors">info@abc-place.com</a>
             <br />
             Open Daily 08:00 – 17:00
           </p>
@@ -163,7 +163,7 @@ const AbcFooter = () => (
             color: "#4A4A52",
           }}
         >
-          © 2025 ABC Place. All Rights Reserved.
+          © {new Date().getFullYear()} ABC Place. All Rights Reserved.
         </p>
         <div className="flex gap-5">
           {["Privacy Policy", "Terms of Use", "Sitemap"].map((s) => (
