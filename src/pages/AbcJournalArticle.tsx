@@ -3,7 +3,9 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import AbcHeader from "@/components/abc/AbcHeader";
 import { ScrollProgress } from "@/components/abc/AbcUXChrome";
 import { journal, type JournalArticle } from "@/data/abcPlace";
-import { Twitter, Link2, MessageCircle } from "lucide-react";
+import { Twitter, Link2, Linkedin, Facebook } from "lucide-react";
+
+const SITE = "https://abc-place.com";
 
 const readingTime = (a: JournalArticle) => {
   const words = a.body.join(" ").split(/\s+/).length;
@@ -16,7 +18,78 @@ const AbcJournalArticle = () => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (article) document.title = `${article.title} | The Journal — ABC Place`;
+    if (!article) return;
+    const url = `${SITE}/journal/${article.slug}`;
+    const title = `${article.title} | The Journal — ABC Place`;
+    const description = article.excerpt || article.body[0]?.slice(0, 155) || "";
+    document.title = title;
+
+    const upsertMeta = (sel: string, attr: string, name: string, content: string) => {
+      let el = document.head.querySelector(sel) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+    upsertMeta('meta[name="description"]', "name", "description", description);
+    upsertMeta('meta[property="og:title"]', "property", "og:title", title);
+    upsertMeta('meta[property="og:description"]', "property", "og:description", description);
+    upsertMeta('meta[property="og:url"]', "property", "og:url", url);
+    upsertMeta('meta[property="og:type"]', "property", "og:type", "article");
+    upsertMeta('meta[property="og:image"]', "property", "og:image", article.image);
+    upsertMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
+    upsertMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
+    upsertMeta('meta[name="twitter:image"]', "name", "twitter:image", article.image);
+
+    let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", url);
+
+    // JSON-LD: Article + BreadcrumbList
+    const ldId = "ld-article-jsonld";
+    document.getElementById(ldId)?.remove();
+    const ld = document.createElement("script");
+    ld.type = "application/ld+json";
+    ld.id = ldId;
+    ld.text = JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.title,
+        description,
+        image: [article.image],
+        datePublished: article.date,
+        dateModified: article.date,
+        author: { "@type": "Organization", name: "ABC Place Editorial" },
+        publisher: {
+          "@type": "Organization",
+          name: "ABC Place",
+          logo: { "@type": "ImageObject", url: `${SITE}/favicon.ico` },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        articleSection: article.category,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "The Journal", item: `${SITE}/journal` },
+          { "@type": "ListItem", position: 3, name: article.title, item: url },
+        ],
+      },
+    ]);
+    document.head.appendChild(ld);
+
+    return () => {
+      document.getElementById(ldId)?.remove();
+    };
   }, [article]);
 
   if (!article) return <Navigate to="/" replace />;
