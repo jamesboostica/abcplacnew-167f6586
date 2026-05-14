@@ -21,7 +21,7 @@ const Journal = () => {
           >
             <div
               className="overflow-hidden bg-abc-cream"
-              style={{ aspectRatio: "21/9" }}
+              style={{ aspectRatio: "16/5" }}
             >
               <img
                 src={featured.image}
