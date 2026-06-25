@@ -15,6 +15,7 @@ import Journal from "./pages/Journal";
 import Visit from "./pages/Visit";
 import Events from "./pages/Events";
 import Contact from "./pages/Contact";
+import UkoHapa from "./pages/UkoHapa";
 import StoreDetail from "./pages/StoreDetail";
 import {
   PageFade,
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/directory" element={<Directory />} />
+          <Route path="/uko-hapa" element={<UkoHapa />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
