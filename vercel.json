@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!__l5e|assets|.*\\..*).*)", "destination": "/index.html" }
+  ]
+}
