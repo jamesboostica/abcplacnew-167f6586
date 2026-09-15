@@ -115,6 +115,33 @@ export type Tenant = {
 /* ===== Dining ===== */
 export const dining: Tenant[] = [
   {
+    name: "F'EAST Bar & Kitchen",
+    slug: "feast-bar-kitchen",
+    tagline: "LOCAL PRODUCE, WITH EASTERN ACCENTS",
+    editorial:
+      "Nairobi's newest vibrant gastro-bar and social dining destination. Local produce, with Eastern accents.",
+    image: feastInteriorAsset.url,
+    gallery: [
+      feastInteriorAsset.url,
+      feastTeamAsset.url,
+      feastPrawnsAsset.url,
+      feastSkewersAsset.url,
+      feastDessertAsset.url,
+    ],
+    category: "Dining & Culinary",
+    subcategory: "Restaurants",
+    floor: "Ground",
+    location: "Ground Floor, ABC Place",
+    status: "now-open",
+    about:
+      "Moving forward from the 14-year legacy of Seven Seafood & Grill, F'EAST has been reborn at ABC Place, Waiyaki Way — a vibrant gastro-bar blending bold flavours with creativity and spontaneity, a celebration of conscious social dining. The name is a playful fusion of \"Feast\" and \"East\", reflecting both the shared joy of gathering around food and the Eastern influence behind the flavours. Under executive chef Kiran Jethwa, the kitchen works in Indo-Mediterranean fusion, drawing on local produce. The room seats 96 in total: 74 indoor dining seats and 22 open-air terrace covers.",
+    signature:
+      "Chef Kiran Jethwa's Indo-Mediterranean table — Kingfish Tiradito, Tuna Crudo, Charred Squid, Thor's Hammer, Octopus Choma and Grilled Cabbage, shared across the terrace as the evening settles.",
+    editorPick: "Kingfish Tiradito · Octopus Choma · Thor's Hammer",
+    phone: "+254 737 776 677",
+    hours: "Monday – Sunday: 11:30 AM to late",
+  },
+  {
     name: "Java House",
     slug: "java-house",
     tagline: "THE MORNING RITUAL",
