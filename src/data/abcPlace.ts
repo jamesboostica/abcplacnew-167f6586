@@ -1,9 +1,9 @@
 export type Floor = "Ground" | "First" | "Second";
-import feastInteriorAsset from "@/assets/venue-bar-interior.jpg.asset.json";
-import feastTeamAsset from "@/assets/venue-bar-team.jpg.asset.json";
-import feastPrawnsAsset from "@/assets/venue-bbq-prawns.jpg.asset.json";
-import feastDessertAsset from "@/assets/venue-profiterole-pour.jpg.asset.json";
-import feastSkewersAsset from "@/assets/venue-tandoori-skewers.jpg.asset.json";
+import feastInterior from "@/assets/feast-bar-interior.webp";
+import feastTeam from "@/assets/feast-bar-team.webp";
+import feastPrawns from "@/assets/feast-bbq-prawns.webp";
+import feastDessert from "@/assets/feast-profiterole-pour.webp";
+import feastSkewers from "@/assets/feast-tandoori-skewers.webp";
 import broodExterior from "@/assets/brood-exterior.webp";
 import broodCounter from "@/assets/brood-counter.webp";
 import broodInterior from "@/assets/brood-interior.webp";
@@ -120,13 +120,13 @@ export const dining: Tenant[] = [
     tagline: "LOCAL PRODUCE, WITH EASTERN ACCENTS",
     editorial:
       "Nairobi's newest vibrant gastro-bar and social dining destination. Local produce, with Eastern accents.",
-    image: feastInteriorAsset.url,
+    image: feastInterior,
     gallery: [
-      feastInteriorAsset.url,
-      feastTeamAsset.url,
-      feastPrawnsAsset.url,
-      feastSkewersAsset.url,
-      feastDessertAsset.url,
+      feastInterior,
+      feastTeam,
+      feastPrawns,
+      feastSkewers,
+      feastDessert,
     ],
     category: "Dining & Culinary",
     subcategory: "Restaurants",
