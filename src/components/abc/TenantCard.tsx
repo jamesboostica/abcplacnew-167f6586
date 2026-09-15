@@ -8,7 +8,8 @@ const TenantCard = ({ tenant, index }: { tenant: Tenant; index: number }) => {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    const fallback = setTimeout(() => setVisible(true), 1200);
+    if (!el) return () => clearTimeout(fallback);
     const obs = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
@@ -19,7 +20,10 @@ const TenantCard = ({ tenant, index }: { tenant: Tenant; index: number }) => {
       { threshold: 0.1 }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      obs.disconnect();
+    };
   }, []);
 
   return (

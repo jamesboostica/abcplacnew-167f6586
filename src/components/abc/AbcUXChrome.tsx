@@ -68,16 +68,25 @@ export const BackToTop = () => {
 
 /* Initial loading screen — wordmark + thin progress, fades out after 1.2s */
 export const LoadingScreen = () => {
-  const [show, setShow] = useState(true);
+  const alreadySeen =
+    typeof window !== "undefined" &&
+    window.sessionStorage.getItem("abc-intro-seen") === "1";
+  const [show, setShow] = useState(!alreadySeen);
   const [opacity, setOpacity] = useState(1);
   useEffect(() => {
-    const fade = setTimeout(() => setOpacity(0), 1000);
-    const remove = setTimeout(() => setShow(false), 1400);
+    if (alreadySeen) return;
+    try {
+      window.sessionStorage.setItem("abc-intro-seen", "1");
+    } catch {
+      /* storage unavailable — intro still fades out below */
+    }
+    const fade = setTimeout(() => setOpacity(0), 600);
+    const remove = setTimeout(() => setShow(false), 1000);
     return () => {
       clearTimeout(fade);
       clearTimeout(remove);
     };
-  }, []);
+  }, [alreadySeen]);
   if (!show) return null;
   return (
     <div

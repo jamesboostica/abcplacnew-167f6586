@@ -18,13 +18,18 @@ const useReveal = <T extends HTMLElement>() => {
   const [v, setV] = useState(false);
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    // Safety net: never leave content invisible if the observer never fires.
+    const fallback = setTimeout(() => setV(true), 1200);
+    if (!el) return () => clearTimeout(fallback);
     const o = new IntersectionObserver(
       ([e]) => e.isIntersecting && (setV(true), o.disconnect()),
       { threshold: 0.15 }
     );
     o.observe(el);
-    return () => o.disconnect();
+    return () => {
+      clearTimeout(fallback);
+      o.disconnect();
+    };
   }, []);
   return { ref, visible: v };
 };
