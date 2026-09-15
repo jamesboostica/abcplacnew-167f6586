@@ -1,4 +1,9 @@
 export type Floor = "Ground" | "First" | "Second";
+import feastInteriorAsset from "@/assets/venue-bar-interior.jpg.asset.json";
+import feastTeamAsset from "@/assets/venue-bar-team.jpg.asset.json";
+import feastPrawnsAsset from "@/assets/venue-bbq-prawns.jpg.asset.json";
+import feastDessertAsset from "@/assets/venue-profiterole-pour.jpg.asset.json";
+import feastSkewersAsset from "@/assets/venue-tandoori-skewers.jpg.asset.json";
 import broodExterior from "@/assets/brood-exterior.webp";
 import broodCounter from "@/assets/brood-counter.webp";
 import broodInterior from "@/assets/brood-interior.webp";
